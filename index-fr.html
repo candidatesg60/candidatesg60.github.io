@@ -1,149 +1,210 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hoai Bui</title>
-  <meta name="description" content="Site personnel de Hoai Bui." />
+  <meta name="description" content="Personal website of Hoai Bui." />
   <meta property="og:title" content="Hoai Bui" />
-  <meta property="og:description" content="Site personnel de Hoai Bui." />
+  <meta property="og:description" content="Personal website of Hoai Bui." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/social-card.png" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
-
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦦</text></svg>">
   <style>
-    :root {
-      --bg:#fbfbfb; --text:#1f2328; --sub:#5f6b7a; --link:#2563eb; --card:#ffffff; --border:#e6e6e6; --accent:#facc15;
+    :root{
+      --bg:#fbfbfb; --text:#1f2328; --sub:#5f6b7a; --link:#2563eb; --card:#ffffff; --border:#e6e6e6;
     }
-    [data-theme="dark"] {
-      --bg:#0b0c0f; --text:#e7e9ee; --sub:#9aa4b2; --link:#86b7ff; --card:#0f1116; --border:#2a2f3a; --accent:#eab308;
+    /* Manual theme override (via data-theme) */
+    :root[data-theme="dark"]{
+      --bg:#0b0c0f; --text:#e7e9ee; --sub:#9aa4b2; --link:#86b7ff; --card:#0f1116; --border:#2a2f3a;
     }
-    * { box-sizing: border-box; }
-    html, body { height:100%; margin:0; padding:0; }
-    body {
-      font-family: "Courier Prime", monospace;
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: background 0.3s, color 0.3s;
+    /* Respect system by default if no manual choice yet */
+    @media (prefers-color-scheme: dark){
+      :root:not([data-theme="light"]){
+        --bg:#0b0c0f; --text:#e7e9ee; --sub:#9aa4b2; --link:#86b7ff; --card:#0f1116; --border:#2a2f3a;
+      }
     }
 
-    main { max-width: 760px; margin: 1cm auto; padding: 0 24px; flex: 1; }
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; margin:0; }
+    body{
+      font-family: "Courier Prime", monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      color:var(--text);
+      background:var(--bg);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    main{ max-width: 760px; margin: 0cm auto; padding: 0 24px; flex:1; }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
       flex-wrap: nowrap;
-      max-width: 760px;
-      width: 90%;
-      margin: 0.5cm auto 0;
-      padding: 0 24px;
+      max-width:760px;
+      width:90%;
+      margin:1cm auto 0; /* top margin */
+      padding:0 24px;
+      position: relative;
     }
 
     header h1 {
       font-size: 20px;
       margin: 0;
-      font-weight: 300;
+      font-weight: 200;
       white-space: nowrap;
+    }
+    header h1 a{
+      color: var(--text);
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
     }
 
     header h1 em { font-style: italic; }
 
-    .nav-icons {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+    section{ margin: 45px 0; }
+    h2{ font-size: 14px; text-transform: uppercase; letter-spacing: .12em; color: #CC9748; margin: 0 0 10px; }
+    ul{ padding-left: 1.1rem; margin:10px 0 0; }
+    li{ margin: 6px 0; }
+    a{ color:var(--link); text-decoration: none; border-bottom: none; }
+    a:hover{ border-bottom-style: none; }
 
-    .nav-icons img {
-      width: 25px;
-      height: 25px;
-      display: block;
-      filter: invert(0);
-      transition: transform .15s ease, opacity .15s ease, filter 0.3s ease;
-    }
-    [data-theme="dark"] .nav-icons img {
-      filter: invert(1);
-    }
-
-    .nav-icons a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      text-decoration: none;
-      border: none;
+    /* ---------- ICONS: perfect alignment ---------- */
+    .nav-icons { display:flex; align-items:center; gap:20px; }
+    .nav-icons .icon{
+      width:32px; height:32px;
+      display:grid; place-items:center;
+      line-height:0; border:none; text-decoration:none;
+      cursor: pointer;
       transition: transform .15s ease, opacity .15s ease;
     }
+    .nav-icons .icon:hover{ transform: translateY(-2px); opacity:.9; }
+    .nav-icons .icon img{
+      width:24px; height:24px; display:block; object-fit:contain;
+      filter: none;
+    }
+    
+    /* NEW: Make icons white in dark mode */
+    :root[data-theme="dark"] .nav-icons .icon img {
+    filter: invert(1) brightness(1.2);
+    }
 
-    .nav-icons a:hover { transform: translateY(-2px); opacity: .8; }
 
+    /* Optional tiny nudges if any icon still looks off (uncomment & tweak) */
+    /* .icon.github img   { transform: translateY(0px); }
+       .icon.mail img     { transform: translateY(0px); }
+       .icon.linkedin img { transform: translateY(0px); }
+       .icon.behance img  { transform: translateY(0px); } */
+
+    
+    /* Header divider (gap below header row) */
     hr.top-line {
       border: none;
       border-top: 1px solid var(--border);
       max-width: 760px;
       width: 90%;
-      margin: 0.5cm auto 1cm;
+      margin: 1cm auto 0.8cm; /* margin-top = gap from header row; margin-bottom = gap to main */
     }
 
-    hr.bottom-line {
+    /* Footer divider */
+    hr.bottom-line{
       border: none;
       border-top: 1px solid var(--border);
       max-width: 760px;
       width: 90%;
-      margin: 0.5cm auto 0;
+      margin: 0.5cm auto 0; /* 0.5cm above footer */
     }
-
-    section { margin: 34px 0; }
-    h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 6px; }
-    ul { padding-left: 1.1rem; margin: 10px 0 0; }
-    li { margin: 6px 0; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
     .footer-container {
       max-width: 760px;
       width: 90%;
       margin: 0 auto;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
       padding: 0 24px;
       position: relative;
       height: 60px;
     }
-
     .footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 16px;
-      align-items: center;
-      position: absolute;
-      bottom: 0.5cm;
-      right: 24px;
+      display:flex;
+      justify-content:flex-end;
+      gap:16px;
+      align-items:center;
+      position:absolute;
+      bottom:0.5cm; /* equal to gap above */
+      right:24px;
     }
+
+    /* Language popover */
+    .lang-menu{
+      position: absolute;
+      top: 42px;             /* below icons row */
+      right: 24px;           /* align to right edge of header content */
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      display: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      z-index: 10;
+    }
+    .lang-menu a{
+      display:block;
+      padding:6px 10px;
+      font-size: 14px;
+      color: var(--text);
+      text-decoration:none;
+      border-radius:8px;
+    }
+    .lang-menu a:hover{ background: color-mix(in srgb, var(--link) 10%, transparent); }
+    .lang-menu.open{ display:block; }
 
   </style>
 </head>
-
 <body>
   <header>
-    <h1><a href="index.html" style="color:inherit;text-decoration:none;">Hoai <em>Bui</em></a></h1>
-    <nav class="nav-icons">
-      <a href="#" title="Notifications"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' viewBox='0 0 24 24'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M15 17h5l-1.405-1.405A2.032 2.032 0 0 1 18 14.158V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 0 0-3 0v.68C7.64 5.36 6 7.93 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 1 1-6 0'/ %3e%3c/svg%3e" alt="Bell" /></a>
+    <!-- Clickable name goes home -->
+    <h1><a href="index.html">Hoai <em>Bui</em></a></h1>
 
-      <a href="books.html" title="Livres recommandés"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M8 21h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H8m0 16V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2z'/%3e%3c/svg%3e" alt="Book" /></a>
+    <!-- Header icons -->
+    <nav class="nav-icons" aria-label="Primary">
+      <!-- (penguin) keep your other icons here if you want -->
+      <span class="icon penguin" title="Icon 1">
+        <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M16.74 6.79a4.4 4.4 0 0 0-.07-1.49 4.77 4.77 0 0 0-9.44 1 5 5 0 0 0 0 .54 9.16 9.16 0 0 1-1 5.66 6.66 6.66 0 0 0-.9 3.07 6.78 6.78 0 0 0 6.57 7 6.68 6.68 0 0 0 6.79-6.68 6.55 6.55 0 0 0-1-3.46 8.84 8.84 0 0 1-.95-5.64Zm-9.51 3.3-4.78 7.64m14.32-7.64 4.78 7.64M5.32 22.5h13.36M12 7.23v2.86'/%3e%3c/svg%3e" alt="icon 1" />
+      </span>
 
-      <a href="#" title="Langue"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M.5 3.35H12M6.25.48v2.87m2.87 0c0 3.52-3.28 8.2-7.66 10.55'/%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M4.51 7.37A16.4 16.4 0 0 0 11 13.9m1.96 8.62 3.83-10.54h.96l3.83 10.54m-1.15-3.83h-5.36m-4.03 3.83h3.84m4.79 0h3.83'/%3e%3c/svg%3e" alt="Language" /></a>
+      <!-- (rose) keep your other icons here if you want -->
+      <span class="icon rose" title="Icon 1">
+        <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M11.61 12a5 5 0 0 1-.55-.08A4.92 4.92 0 0 1 7.22 7V1.5A8.56 8.56 0 0 1 13.3 4a8.5 8.5 0 0 1 1.95 3 3.68 3.68 0 0 1-3.64 5Z'/%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M16.78 1.5v5.74A4.77 4.77 0 0 1 11.51 12a4.92 4.92 0 0 1-4.29-5V1.5ZM12 23.5V12.02m4.28 1.91h1.46v.5a4.28 4.28 0 0 1-4.28 4.28H12v-.5a4.28 4.28 0 0 1 4.28-4.28ZM12 20.63h-1.46a4.28 4.28 0 0 1-4.28-4.28v-.5h1.46A4.28 4.28 0 0 1 12 20.13z'/%3e%3c/svg%3e" alt="icon 1" />
+      </span>
 
-      <a href="#" id="theme-toggle" title="Mode clair/sombre"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-width='1.5' viewBox='0 0 24 24'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z'/%3e%3c/svg%3e" alt="Moon" /></a>
+    
+      <!-- Language icon opens menu -->
+      <span class="icon lang" id="langBtn" title="Change language">
+        <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 24 24'%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M.5 3.35H12M6.25.48v2.87m2.87 0c0 3.52-3.28 8.2-7.66 10.55'/%3e%3cpath fill='none' stroke='black' stroke-miterlimit='10' stroke-width='1.5' d='M4.51 7.37A16.4 16.4 0 0 0 11 13.9m1.96 8.62 3.83-10.54h.96l3.83 10.54m-1.15-3.83h-5.36m-4.03 3.83h3.84m4.79 0h3.83'/%3e%3c/svg%3e" alt="Language" />
+      </span>
+
+      <!-- Moon toggles theme -->
+      <span class="icon moon" id="themeToggle" title="Toggle theme">
+        <!-- simple crescent moon -->
+        <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M16.5 13a5.5 5.5 0 0 0 5.337-4.164 5.5 5.5 0 0 1-6.673-6.672 5.502 5.502 0 0 0-3.548 7.867M5 7V3M3 5h4M6 22a4 4 0 0 1-.679-7.943 6.003 6.003 0 0 1 10.968-.892A4.5 4.5 0 1 1 17.5 22H6.001Z'/%3e%3c/svg%3e" alt="Moon" />
+      </span>
     </nav>
+
+    <!-- Language popover -->
+<div class="lang-menu" id="langMenu">
+  <a href="index.html">English</a>
+  <a href="index-fr.html">Français</a>
+  <a href="index-zh.html">中文</a>
+  <a href="index-ko.html">한국어</a>
+</div>
   </header>
 
   <hr class="top-line">
@@ -182,7 +243,47 @@
 
   <div class="footer-container">
     <footer class="footer">
-      <a href="https://github.com/candidatesg60" target="_blank"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'%3e%3cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.4 13.4 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'/%3e%3c/svg%3e" alt="GitHub" /></a>
-      <a href="mailto:buithuhoai.r@gmail.com"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='black' d='m18.73 5.41-1.28 1L12 10.46 6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64'/%3e%3c/svg%3e" alt="Email" /></a>
-      <a href="https://www.linkedin.com/in/hoaibui-thu/" target="_blank"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3ccircle fill='black' cx='4.983' cy='5.009' r='2.188'/%3e%3cpath fill='black' d='M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66zm-6.142 0H6.87v12.139H3.095z'/%3e%3c/svg%3e" alt="LinkedIn" /></a>
-      <a href="https://www.behance.net/rosalieee" target="_blank"><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3e%3cpath d='M4.654 3c.461 0 .887.035 1.278.14.39.07.711.216.996.391s.497.426.641.747c.14.32.216.711.216 1.137 0 .496-.106.922-.356 1.242-.215.32-.566.606-.997.817.606.176 1.067.496 1.348.922s.461.957.461 1.563c0 .496-.105.922-.285 1.278a2.3 2.3 0 0 1-.782.887c-.32.215-.711.39-1.137.496a5.3 5.3 0 0 1-1.278.176L0 12.803V3zm-.285 3.978c.39 0 .71-.105.957-.285.246-.18.355-.497.355-.887 0-.216-.035-.426-.105-.567a1 1 0 0 0-.32-.355 1.8 1.8 0 0 0-.461-.176c-.176-.035-.356-.035-.567-.035H2.17v2.31c0-.005 2.2-.005 2.2-.005zm.105 4.193c.215 0 .426-.035.606-.07.176-.035.356-.106.496-.216s.25-.215.356-.39c.07-.176.14-.391.14-.641 0-.496-.14-.852-.426-1.102-.285-.215-.676-.32-1.137-.32H2.17v2.734h2.305zm6.858-.035q.428.427 1.278.426c.39 0 .746-.106 1.032-.286q.426-.32.53-.64h1.74c-.286.851-.712 1.457-1.278 1.848-.566.355-1.243.566-2.06.566a4.1 4.1 0 0 1-1.527-.285 2.8 2.8 0 0 1-1.137-.782 2.85 2.85 0 0 1-.712-1.172c-.175-.461-.25-.957-.25-1.528 0-.531.07-1.032.25-1.493
+      <nav class="nav-icons" aria-label="Social Links">
+        <a class="icon github" href="https://github.com/candidatesg60" target="_blank" rel="noopener" title="GitHub">
+          <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'%3e%3cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.4 13.4 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'/%3e%3c/svg%3e" alt="GitHub icon" />
+        </a>
+        <a class="icon linkedin" href="https://www.linkedin.com/in/hoaibui-thu/" target="_blank" rel="noopener" title="LinkedIn">
+          <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3ccircle fill='black' cx='4.983' cy='5.009' r='2.188'/%3e%3cpath fill='black' d='M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66zm-6.142 0H6.87v12.139H3.095z'/%3e%3c/svg%3e" alt="LinkedIn icon" />
+        </a>
+        <a class="icon mail" href="mailto:buithuhoai.r@gmail.com" title="Email">
+          <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath fill='black' d='m18.73 5.41-1.28 1L12 10.46 6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64'/%3e%3c/svg%3e" alt="Email icon" />
+        </a>
+        <a class="icon behance" href="https://www.behance.net/rosalieee" target="_blank" rel="noopener" title="Behance">
+          <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 16 16'%3e%3cpath d='M4.654 3c.461 0 .887.035 1.278.14.39.07.711.216.996.391s.497.426.641.747c.14.32.216.711.216 1.137 0 .496-.106.922-.356 1.242-.215.32-.566.606-.997.817.606.176 1.067.496 1.348.922s.461.957.461 1.563c0 .496-.105.922-.285 1.278a2.3 2.3 0 0 1-.782.887c-.32.215-.711.39-1.137.496a5.3 5.3 0 0 1-1.278.176L0 12.803V3zm-.285 3.978c.39 0 .71-.105.957-.285.246-.18.355-.497.355-.887 0-.216-.035-.426-.105-.567a1 1 0 0 0-.32-.355 1.8 1.8 0 0 0-.461-.176c-.176-.035-.356-.035-.567-.035H2.17v2.31c0-.005 2.2-.005 2.2-.005zm.105 4.193c.215 0 .426-.035.606-.07.176-.035.356-.106.496-.216s.25-.215.356-.39c.07-.176.14-.391.14-.641 0-.496-.14-.852-.426-1.102-.285-.215-.676-.32-1.137-.32H2.17v2.734h2.305zm6.858-.035q.428.427 1.278.426c.39 0 .746-.106 1.032-.286q.426-.32.53-.64h1.74c-.286.851-.712 1.457-1.278 1.848-.566.355-1.243.566-2.06.566a4.1 4.1 0 0 1-1.527-.285 2.8 2.8 0 0 1-1.137-.782 2.85 2.85 0 0 1-.712-1.172c-.175-.461-.25-.957-.25-1.528 0-.531.07-1.032.25-1.493.18-.46.426-.852.747-1.207.32-.32.711-.606 1.137-.782a4 4 0 0 1 1.493-.285c.606 0 1.137.105 1.598.355.46.25.817.532 1.102.958.285.39.496.851.641 1.348.07.496.105.996.07 1.563h-5.15c0 .58.21 1.11.496 1.396m2.24-3.732c-.25-.25-.642-.391-1.103-.391-.32 0-.566.07-.781.176s-.356.25-.496.39a.96.96 0 0 0-.25.497c-.036.175-.07.32-.07.46h3.196c-.07-.526-.25-.882-.497-1.132zm-3.127-3.728h3.978v.957h-3.978z'/%3e%3c/svg%3e" alt="Behance icon" />
+        </a>
+      </nav>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle (moon)
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+
+    function toggleTheme(){
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+    themeToggle?.addEventListener('click', toggleTheme);
+
+    // Language popover
+    const langBtn = document.getElementById('langBtn');
+    const langMenu = document.getElementById('langMenu');
+    langBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langMenu.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!langMenu.contains(e.target)) langMenu.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
