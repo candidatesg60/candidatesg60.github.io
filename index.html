@@ -88,10 +88,12 @@
       width:24px; height:24px; display:block; object-fit:contain;
       filter: none;
     }
-    :root[data-theme="dark"] .nav-icons .icon img{
-      /* keep icons visible in dark mode (they are strokes/fills already black) */
-      filter: invert(0);
+    
+    /* NEW: Make icons white in dark mode */
+    :root[data-theme="dark"] .nav-icons .icon img {
+    filter: invert(1) brightness(1.2);
     }
+
 
     /* Optional tiny nudges if any icon still looks off (uncomment & tweak) */
     /* .icon.github img   { transform: translateY(0px); }
