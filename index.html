@@ -62,14 +62,25 @@
     /* ---------- ICONS: perfect alignment ---------- */
     .nav-icons { display:flex; align-items:center; gap:20px; }
     /* Square container centers the image */
-    .nav-icons .icon{
-      width:32px; height:32px;
-      display:grid; place-items:center;
-      line-height:0; /* remove stray inline gap */
-    }
-    .nav-icons .icon img{
-      width:24px; height:24px; display:block; object-fit:contain;
-    }
+.nav-icons .icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;   /* center both axes */
+  line-height: 0;        /* kill inline baseline gap */
+  text-decoration: none; /* no underline/dots */
+  border: none;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.nav-icons .icon:hover { transform: translateY(-2px); opacity: .9; }
+
+/* Force every SVG into the same box */
+.nav-icons .icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
     /* Optional tiny nudges if any icon still looks off (uncomment & tweak) */
     /* .icon.github img   { transform: translateY(0px); }
        .icon.mail img     { transform: translateY(0px); }
