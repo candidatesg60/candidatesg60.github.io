@@ -14,6 +14,21 @@
     :root{
       --bg:#fbfbfb; --text:#1f2328; --sub:#5f6b7a; --link:#2563eb; --card:#ffffff; --border:#e6e6e6;
     }
+    
+    /* Accent color = same as section titles */
+:root{
+  --accent:#CC9748;
+  /* filter that tints black/white icons to --accent */
+  --icon-hover-filter: invert(63%) sepia(47%) saturate(570%) hue-rotate(352deg) brightness(95%) contrast(92%);
+}
+
+/* keep your existing h2 color but switch to the variable if you like */
+h2{ color: var(--accent); }
+
+/* Hover = turn icons yellow (overrides light/dark base filters) */
+.nav-icons .icon:hover img{
+  filter: var(--icon-hover-filter) !important;
+}
     /* Manual theme override (via data-theme) */
     :root[data-theme="dark"]{
       --bg:#0b0c0f; --text:#e7e9ee; --sub:#9aa4b2; --link:#86b7ff; --card:#0f1116; --border:#2a2f3a;
@@ -83,7 +98,9 @@
       cursor: pointer;
       transition: transform .15s ease, opacity .15s ease;
     }
-    .nav-icons .icon:hover{ transform: translateY(-2px); opacity:.9; }
+    .nav-icons .icon:hover img {
+  filter: invert(63%) sepia(47%) saturate(570%) hue-rotate(352deg) brightness(95%) contrast(92%) !important;
+}
     .nav-icons .icon img{
       width:24px; height:24px; display:block; object-fit:contain;
       filter: none;
@@ -142,28 +159,36 @@
     }
 
     /* Language popover */
-    .lang-menu{
-      position: absolute;
-      top: 42px;             /* below icons row */
-      right: 24px;           /* align to right edge of header content */
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 6px;
-      display: none;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      z-index: 10;
-    }
-    .lang-menu a{
-      display:block;
-      padding:6px 10px;
-      font-size: 14px;
-      color: var(--text);
-      text-decoration:none;
-      border-radius:8px;
-    }
-    .lang-menu a:hover{ background: color-mix(in srgb, var(--link) 10%, transparent); }
+.lang-menu{
+  position: absolute;
+  top: 42px;
+  right: 24px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px;
+  display: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  z-index: 10;
+}
+
+/* Language options (default) */
+.lang-menu a{
+  display: block;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background .2s ease, color .2s ease;
+}
+
+/* When pointer hovers on a language option → background turns yellow */
+.lang-menu a:hover{
+  background: var(--accent);
+  color: #1f2328;  /* dark text for contrast */
+}
     .lang-menu.open{ display:block; }
 
   </style>
