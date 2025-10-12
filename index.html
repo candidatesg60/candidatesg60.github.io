@@ -25,10 +25,18 @@
 /* keep your existing h2 color but switch to the variable if you like */
 h2{ color: var(--accent); }
 
-/* Hover = turn icons yellow (overrides light/dark base filters) */
-.nav-icons .icon:hover img{
-  filter: var(--icon-hover-filter) !important;
+    /* Icons: yellow + jumpy hover effect */
+.nav-icons .icon:hover {
+  transform: translateY(-2px);
+  opacity: .9;
 }
+/* Hover = turn icons yellow (overrides light/dark base filters) */
+.nav-icons .icon:hover img {
+  /* yellow tint filter + smooth transition */
+  filter: invert(63%) sepia(47%) saturate(570%) hue-rotate(352deg) brightness(95%) contrast(92%) !important;
+  transition: filter .2s ease, transform .15s ease, opacity .15s ease;
+}
+    
     /* Manual theme override (via data-theme) */
     :root[data-theme="dark"]{
       --bg:#0b0c0f; --text:#e7e9ee; --sub:#9aa4b2; --link:#86b7ff; --card:#0f1116; --border:#2a2f3a;
