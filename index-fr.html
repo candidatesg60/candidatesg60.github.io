@@ -10,9 +10,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/social-card.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦦</text></svg>">
+  
+  
+  
   <style>
     :root{
       --bg:#fbfbfb; --text:#1f2328; --sub:#5f6b7a; --link:#2563eb; --card:#ffffff; --border:#e6e6e6;
+      --footer-icon-box: 32px;
+      --footer-gap: 0.5cm;
     }
     /* Manual theme override (via data-theme) */
     :root[data-theme="dark"]{
@@ -38,7 +43,14 @@
       justify-content:space-between;
     }
 
-    main{ max-width: 760px; margin: 0cm auto; padding: 0 24px; flex:1; }
+ main{
+  max-width: 760px;
+  margin: 0cm auto;
+  padding: 0 24px;
+  /* add bottom padding equal to footer band height + a little breathing room */
+  padding-bottom: calc(var(--footer-gap) + var(--footer-icon-box) + var(--footer-gap) + 16px);
+  flex:1;
+}
 
     header {
       display:flex;
@@ -111,35 +123,55 @@
       margin: 1cm auto 0.8cm; /* margin-top = gap from header row; margin-bottom = gap to main */
     }
 
-    /* Footer divider */
-    hr.bottom-line{
-      border: none;
-      border-top: 1px solid var(--border);
-      max-width: 760px;
-      width: 90%;
-      margin: 0.5cm auto 0; /* 0.5cm above footer */
-    }
+/* ---------- Fixed footer band ---------- */
+.footer-fixed{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: calc(var(--footer-gap) + var(--footer-icon-box) + var(--footer-gap));
+  z-index: 50;
+  pointer-events: none; /* band doesn't block page; inner area re-enables clicks */
+}
 
-    .footer-container {
-      max-width: 760px;
-      width: 90%;
-      margin: 0 auto;
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      padding: 0 24px;
-      position: relative;
-      height: 60px;
-    }
-    .footer {
-      display:flex;
-      justify-content:flex-end;
-      gap:16px;
-      align-items:center;
-      position:absolute;
-      bottom:0.5cm; /* equal to gap above */
-      right:24px;
-    }
+.footer-inner{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 760px;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Divider sits 0.5cm above the icons */
+hr.bottom-line{
+  position: absolute;
+  top: var(--footer-gap);
+  left: 0; right: 0;
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+/* Icons row sits 0.5cm from the bottom, right-aligned */
+.nav-icons.footer-icons{
+  position: absolute;
+  right: 24px;
+  bottom: var(--footer-gap);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  pointer-events: auto; /* clickable */
+}
+
+/* Keep icon boxes consistent */
+.nav-icons .icon{
+  width: var(--footer-icon-box);
+  height: var(--footer-icon-box);
+}
+.nav-icons .icon img{
+  width:24px; height:24px; display:block; object-fit:contain;
+}
 
     /* Language popover */
     .lang-menu{
@@ -167,6 +199,11 @@
     .lang-menu.open{ display:block; }
 
   </style>
+
+
+
+
+
 </head>
 <body>
   <header>
@@ -241,9 +278,11 @@
 
   <hr class="bottom-line">
 
-  <div class="footer-container">
-    <footer class="footer">
-      <nav class="nav-icons" aria-label="Social Links">
+  <div class="footer-fixed">
+  <div class="footer-inner">
+    <hr class="bottom-line" />
+    <nav class="nav-icons footer-icons" aria-label="Social Links">
+        
         <a class="icon github" href="https://github.com/candidatesg60" target="_blank" rel="noopener" title="GitHub">
           <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'%3e%3cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.4 13.4 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'/%3e%3c/svg%3e" alt="GitHub icon" />
         </a>
