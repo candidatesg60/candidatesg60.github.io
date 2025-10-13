@@ -97,6 +97,21 @@ h2{ color: var(--accent); }
     a{ color:var(--link); text-decoration: none; border-bottom: none; }
     a:hover{ border-bottom-style: none; }
 
+            /* Accent link: lighter yellow, subtle fade on hover */
+.accent-link {
+  color: #E0B66A; /* lighter yellow than section title */
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.accent-link:hover {
+  color: var(--accent); /* match the section header yellow */
+  border-bottom-color: var(--accent);
+}
+
+
+
     /* ---------- ICONS: perfect alignment ---------- */
     .nav-icons { display:flex; align-items:center; gap:20px; }
     .nav-icons .icon{
@@ -265,7 +280,7 @@ h2{ color: var(--accent); }
     <section>
       <h2>기타</h2>
       <ul>
-        <li>경제학, 특히 개발경제학과 거시경제학에 큰 관심 있음 (추천할 만한 경제학 서적 있으면 알려주세요).</li>
+        <li>경제학, 특히 개발경제학과 거시경제학에 큰 관심 있음 (<a href="books-ko.html" class="accent-link">추천할 만한 경제학 서적 있으면 알려주세요</a>).</li>
         <li>베트남어, 영어, 프랑스어 구사 가능 (중국어 학습 중) - 이 웹사이트 언어 옵션에 한국어가 있는 이유를 궁금해하신다면, 예전에 한국어를 배웠기 때문이에요(읽기만 가능하게 배운 후 중단했지만), 비로마자 언어 중에서는 여전히 가장 좋아하는 언어입니다.</li>
       </ul>
     </section>
