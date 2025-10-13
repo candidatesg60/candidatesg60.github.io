@@ -97,6 +97,20 @@ h2{ color: var(--accent); }
     a{ color:var(--link); text-decoration: none; border-bottom: none; }
     a:hover{ border-bottom-style: none; }
 
+            /* Accent link: lighter yellow, subtle fade on hover */
+.accent-link {
+  color: #E0B66A; /* lighter yellow than section title */
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.accent-link:hover {
+  color: var(--accent); /* match the section header yellow */
+  border-bottom-color: var(--accent);
+}
+
+
     /* ---------- ICONS: perfect alignment ---------- */
     .nav-icons { display:flex; align-items:center; gap:20px; }
     .nav-icons .icon{
@@ -265,7 +279,7 @@ h2{ color: var(--accent); }
     <section>
       <h2>其他</h2>
       <ul>
-        <li>我对经济学深感兴趣，尤其偏好发展经济学与宏观经济学（欢迎推荐优质经济学书籍）。</li>
+        <li>我对经济学深感兴趣，尤其偏好发展经济学与宏观经济学 (<a href="books-zh.html" class="accent-link">欢迎推荐优质经济学书籍</a>)。</li>
         <li>精通越南语、英语及法语（正在学习中文）——若您好奇本网站语言选项为何包含韩语，因我曾学习韩语（虽止步于阅读阶段），但它仍是我的最爱非罗马字母语言。</li>
       </ul>
     </section>
